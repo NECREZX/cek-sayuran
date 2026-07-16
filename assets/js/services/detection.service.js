@@ -54,6 +54,7 @@ class DetectionService {
 			tensor = tf.browser.fromPixels(imageElement)
 				.resizeNearestNeighbor([224, 224])
 				.toFloat()
+				.div(tf.scalar(255.0))
 				.expandDims();
 			
 			predictions = await this.model.predict(tensor);
