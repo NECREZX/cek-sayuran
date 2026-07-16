@@ -21,9 +21,9 @@ if (workbox) {
 		{ url: '/assets/icons/icon-192x192.png', revision: '1' },
 		{ url: '/assets/icons/icon-512x512.png', revision: '1' },
 		{ url: '/assets/icons/apple-touch-icon.png', revision: '1' },
-		{ url: '/model/model.json', revision: '1' },
-		{ url: '/model/metadata.json', revision: '1' },
-		{ url: '/model/group1-shard1of1.bin', revision: '1' },
+		{ url: '/model/model.json', revision: '2' },
+		{ url: '/model/metadata.json', revision: '2' },
+		{ url: '/model/weights.bin', revision: '2' },
 	]);
 
 	// Cache third-party scripts (TensorFlow.js, Transformers.js, Lucide)
