@@ -15,7 +15,7 @@ class DetectionService {
 			await tf.setBackend('webgpu');
 			await tf.ready();
 			
-			this.model = await tf.loadGraphModel('./model/model.json');
+			this.model = await tf.loadLayersModel('./model/model.json');
 			
 			const response = await fetch('./model/metadata.json');
 			const metadata = await response.json();
@@ -32,7 +32,7 @@ class DetectionService {
 			try {
 				await tf.setBackend('webgl');
 				await tf.ready();
-				this.model = await tf.loadGraphModel('./model/model.json');
+				this.model = await tf.loadLayersModel('./model/model.json');
 				
 				const response = await fetch('./model/metadata.json');
 				const metadata = await response.json();
