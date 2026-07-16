@@ -8,22 +8,19 @@ if (workbox) {
 
 	// Precache assets
 	workbox.precaching.precacheAndRoute([
-		{ url: '/index.html', revision: '5' },
-		{ url: '/manifest.json', revision: '5' },
-		{ url: '/assets/css/styles.css', revision: '5' },
-		{ url: '/assets/js/core/app.js', revision: '5' },
-		{ url: '/assets/js/core/config.js', revision: '5' },
-		{ url: '/assets/js/core/utils.js', revision: '5' },
-		{ url: '/assets/js/services/camera.service.js', revision: '5' },
-		{ url: '/assets/js/services/detection.service.js', revision: '5' },
-		{ url: '/assets/js/services/facts.service.js', revision: '5' },
-		{ url: '/assets/js/ui/ui.handler.js', revision: '5' },
-		{ url: '/assets/icons/icon-192x192.png', revision: '5' },
-		{ url: '/assets/icons/icon-512x512.png', revision: '5' },
-		{ url: '/assets/icons/apple-touch-icon.png', revision: '5' },
-		{ url: '/model/model.json', revision: '5' },
-		{ url: '/model/metadata.json', revision: '5' },
-		{ url: '/model/weights.bin', revision: '5' },
+		{ url: '/index.html', revision: '6' },
+		{ url: '/manifest.json', revision: '6' },
+		{ url: '/assets/css/styles.css', revision: '6' },
+		{ url: '/assets/js/core/app.js', revision: '6' },
+		{ url: '/assets/js/core/config.js', revision: '6' },
+		{ url: '/assets/js/core/utils.js', revision: '6' },
+		{ url: '/assets/js/services/camera.service.js', revision: '6' },
+		{ url: '/assets/js/services/detection.service.js', revision: '6' },
+		{ url: '/assets/js/services/facts.service.js', revision: '6' },
+		{ url: '/assets/js/ui/ui.handler.js', revision: '6' },
+		{ url: '/assets/icons/icon-192x192.png', revision: '6' },
+		{ url: '/assets/icons/icon-512x512.png', revision: '6' },
+		{ url: '/assets/icons/apple-touch-icon.png', revision: '6' },
 	]);
 
 	// Cache third-party scripts (TensorFlow.js, Transformers.js, Lucide)
@@ -37,6 +34,14 @@ if (workbox) {
 					maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
 				}),
 			],
+		})
+	);
+
+	// Runtime caching for model files to prevent precaching errors
+	workbox.routing.registerRoute(
+		({url}) => url.pathname.startsWith('/model/'),
+		new workbox.strategies.StaleWhileRevalidate({
+			cacheName: 'model-cache'
 		})
 	);
 } else {
